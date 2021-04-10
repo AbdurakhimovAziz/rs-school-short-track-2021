@@ -22,11 +22,13 @@
  * ]
  */
 function minesweeper(matrix) {
-  const result = matrix.slice();
+  const newArr = [];
+  matrix.forEach(() => newArr.push(new Array(matrix[0].length)));
+
   let count;
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result[0].length; j++) {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
       count = 0;
       if (matrix[i - 1] && matrix[i - 1][j - 1]) count++;
       if (matrix[i - 1] && matrix[i - 1][j + 1]) count++;
@@ -36,15 +38,10 @@ function minesweeper(matrix) {
       if (matrix[i + 1] && matrix[i + 1][j]) count++;
       if (matrix[i][j - 1]) count++;
       if (matrix[i][j + 1]) count++;
-      result[i][j] = count;
+      newArr[i][j] = count;
     }
   }
-  return result;
+  return newArr;
 }
 
-minesweeper([
-  [true, false, false],
-  [false, true, false],
-  [false, false, false],
-]);
 module.exports = minesweeper;
